@@ -1,0 +1,9 @@
+<div *ngIf="selectedPlanet">
+  <h3><i>{{selectedPlanet.name}}</i></h3>
+
+  <div><label>id: </label>{{selectedPlanet.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="selectedPlanet.name" placeholder="name" />
+  </div>
+</div>

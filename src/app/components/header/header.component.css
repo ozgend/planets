@@ -1,0 +1,12 @@
+.header{
+    background: #f3f3f3;
+    color: #3c9bbb;
+        padding: 0.5em;
+    margin: 0;
+    border: 0;
+}
+
+.header *{
+ margin:0;
+ padding:0;
+}
