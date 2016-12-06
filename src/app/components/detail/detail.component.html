@@ -1,9 +1,13 @@
-<div *ngIf="selectedPlanet">
-  <h3><i>{{selectedPlanet.name}}</i></h3>
+<div *ngIf="selectedPlanet" class="form">
+  <h3 class="text-info">{{selectedPlanet.name}}</h3>
 
-  <div><label>id: </label>{{selectedPlanet.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="selectedPlanet.name" placeholder="name" />
+  <div class="form-item">
+    <label>id: </label>{{selectedPlanet.id}}
+  </div>
+  <div class="form-item">
+    <label>name: </label> {{selectedPlanet.name}}
+  </div>
+  <div class="form-item">
+    <label>distanceToSun: </label> {{selectedPlanet.distanceToSun}}
   </div>
 </div>

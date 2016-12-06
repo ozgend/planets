@@ -1,8 +1,7 @@
-<h3>Planets</h3>
-
+<h3></h3>
 <div class="list-group">
   <a href="#/{{planet.id}}" *ngFor="let planet of planets" (click)="onSelect(planet)"  class="list-group-item list-group-item-action">
     <span>{{planet.name}}</span>
-    <span class="badge">{{planet.distanceToSun}}</span>
+    <span class="badge">{{planet.distanceToSun}} m. km</span>
   </a>
 </div>
