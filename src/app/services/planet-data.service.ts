@@ -1,23 +1,22 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
-
 import { Planet } from '../models/planet';
 
 @Injectable()
 export class PlanetDataService {
 
   private _planets: Planet[] = [
-    { id: 111, name: 'Mercury', distanceToSun: 57.9 },
-    { id: 112, name: 'Venus', distanceToSun: 108.2 },
-    { id: 113, name: 'Earth', distanceToSun: 149.6 },
-    { id: 114, name: 'Mars', distanceToSun: 227.9 },
-    { id: 115, name: 'Jupiter', distanceToSun: 778.3 },
-    { id: 116, name: 'Saturn', distanceToSun: 1427.0 },
-    { id: 117, name: 'Uranus', distanceToSun: 2871.0 },
-    { id: 118, name: 'Neptune', distanceToSun: 4497.1 },
-    { id: 119, name: 'Pluto', distanceToSun: 5913.0 }
+    { id: 111, name: 'Mercury', distanceToSun: 57910000, diameter: 4800 },
+    { id: 112, name: 'Venus', distanceToSun: 108200000, diameter: 12100 },
+    { id: 113, name: 'Earth', distanceToSun: 149600000, diameter: 12750 },
+    { id: 114, name: 'Mars', distanceToSun: 227940000, diameter: 6800 },
+    { id: 115, name: 'Jupiter', distanceToSun: 778330000, diameter: 142800 },
+    { id: 116, name: 'Saturn', distanceToSun: 1424600000, diameter: 120660 },
+    { id: 117, name: 'Uranus', distanceToSun: 2873550000, diameter: 51800 },
+    { id: 118, name: 'Neptune', distanceToSun: 4497100000, diameter: 49500 }
   ];
+
+  public sun: Planet = { id: 100, name: 'Sun', distanceToSun: 0, diameter: 695700 };
 
   public selectionObservable: EventEmitter<Planet>;
 

@@ -10,9 +10,8 @@ import { PlanetDataService } from '../../services/planet-data.service';
 })
 
 export class DetailComponent implements OnDestroy {
-  @Input() selectedPlanet: Planet;
+  selectedPlanet: Planet;
   subscription: Subscription;
-
 
   constructor(private planetDataService: PlanetDataService) {
     this.subscription = this.planetDataService.selectionObservable.subscribe(planet => { this.onSelect(planet); });

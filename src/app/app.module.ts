@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { PlanetDataService } from './services/planet-data.service';
+import { OrbitComponent } from './components/orbit/orbit.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { PlanetDataService } from './services/planet-data.service';
         AppComponent,
         HeaderComponent,
         ListingComponent,
-        DetailComponent
+        DetailComponent,
+        OrbitComponent
     ],
     imports: [
         BrowserModule,
