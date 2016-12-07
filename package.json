@@ -8,7 +8,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "postinstall":"./node_modules/.bin/ng build",
+    "postinstall":"ng build",
     "start": "node host.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
