@@ -8,8 +8,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "postinstall":"ng build",
-    "start": "node host.js",
+    "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
