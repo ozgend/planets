@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class OblvAppPage {
+export class PlanetsAppPage {
   navigateTo() {
     return browser.get('/');
   }

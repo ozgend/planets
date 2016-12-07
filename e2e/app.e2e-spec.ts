@@ -1,10 +1,10 @@
-import { OblvAppPage } from './app.po';
+import { PlanetsAppPage } from './app.po';
 
-describe('oblv-app App', function() {
-  let page: OblvAppPage;
+describe('planets-app App', function() {
+  let page: PlanetsAppPage;
 
   beforeEach(() => {
-    page = new OblvAppPage();
+    page = new PlanetsAppPage();
   });
 
   it('should display message saying app works', () => {
