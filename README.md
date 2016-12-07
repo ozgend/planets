@@ -2,6 +2,8 @@
 
 Basic listing for solar system planets in angular2.
 
+[live demo](solar-system-planets.herokuapp.com)
+
 ##Todo
  - use nasa jpl/horizon or other astronomy apis to retreive data
  - pan/zoom canvas
