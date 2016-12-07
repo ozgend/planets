@@ -1,6 +1,10 @@
 # Planets
 
-Basic listing for planets in Milky Way in angular2.
+Basic listing for solar system planets in angular2.
+
+##Todo
+ - use nasa jpl/horizon or other astronomy apis to retreive data
+ - pan/zoom canvas
 
 ---
 
