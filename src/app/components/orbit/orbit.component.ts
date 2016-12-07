@@ -13,7 +13,6 @@ export class OrbitComponent {
   private canvas: any;
 
   planets: Planet[];
-  selectedPlanet: Planet;
   subscription: Subscription;
 
   private _diameterRatio = 8000;
@@ -36,25 +35,25 @@ export class OrbitComponent {
     this.planetDataService.getPlanets().then(
       planets => {
         this.planets = planets;
-        this.draw(-1);
+        this.draw();
       }
     );
   }
 
   onSelect(planet: Planet) {
-    var highlightIndex = this.planetDataService.findPlanetIndexById(planet.id);
-    this.draw(highlightIndex);
+    this.draw(planet);
   }
 
-  draw(highlightIndex: number) {
-    var context = this.canvas.getContext('2d');
-
-    if (highlightIndex > 0) {
-      context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  draw(selectedPlanet: Planet = null) {
+    if (!selectedPlanet) {
+      return;
     }
 
+    var context = this.canvas.getContext('2d');
     var centerX = 1;
     var centerY = this.canvas.height / 2;
+
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //sun
     context.beginPath();
@@ -65,19 +64,21 @@ export class OrbitComponent {
 
     for (let i = 0; i < this.planets.length; i++) {
 
+      var isSelected = this.planets[i].id == selectedPlanet.id;
+
       var orbitRadius = this.planets[i].distanceToSun / this._distanceRatio; // rough!
 
       context.beginPath();
       context.arc(centerX, centerY, orbitRadius, 1.8 * Math.PI, 2.2 * Math.PI, false);
       context.lineWidth = 1;
-      context.strokeStyle = highlightIndex == i ? '#3c9bbb' : '#ccc';
+      context.strokeStyle = isSelected ? '#3c9bbb' : '#ccc';
       context.stroke();
 
       var planetDiameter = this.planets[i].diameter / this._diameterRatio;
 
       context.beginPath();
       context.arc(orbitRadius, centerY, planetDiameter, 0, 2 * Math.PI, false);
-      context.fillStyle = highlightIndex == i ? '#3c9bbb' : 'gray';
+      context.fillStyle = isSelected ? '#3c9bbb' : 'gray';
       context.fill();
 
     }

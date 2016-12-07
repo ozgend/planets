@@ -1,6 +1,6 @@
 <h3></h3>
 <div class="list-group">
-  <a href="#/{{planet.id}}" *ngFor="let planet of planets" (click)="onSelect(planet)"  class="list-group-item list-group-item-action">
+  <a href="#/{{planet.name.toLowerCase()}}" *ngFor="let planet of planets" (click)="onSelect(planet)"  class="list-group-item list-group-item-action">
     <span>{{planet.name}}</span>
   </a>
 </div>
