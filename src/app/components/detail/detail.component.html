@@ -1,24 +1,24 @@
-<div *ngIf="selectedPlanet" class="dpanel">
-  <h3 class="text-info">{{selectedPlanet.name}}</h3>
+<div *ngIf="spaceObject" class="dpanel">
+  <h3 class="text-info">{{spaceObject.name}}</h3>
 
   <div class="form-item">
-    <label>id: </label>{{selectedPlanet.id}}
+    {{spaceObject.description}}
   </div>
 
   <div class="form-item">
-    <label>name: </label> {{selectedPlanet.name}}
+    <sup>{{spaceObject.uid}}</sup>
+  </div>
+
+  <div class="form-item" *ngIf="spaceObject.distance>0">
+    <label>Distance: </label> {{spaceObject.distance}} km
   </div>
 
   <div class="form-item">
-    <label>distanceToSun: </label> {{selectedPlanet.distanceToSun}} km
+    <label>Diameter: </label> {{spaceObject.diameter}} km
   </div>
 
   <div class="form-item">
-    <label>diameter: </label> {{selectedPlanet.diameter}} km
+    <img src="./assets/{{spaceObject.name.toLowerCase()}}.png" class="col-md-8" />
   </div>
 
-  <div class="form-item">
-    <img src="./assets/{{selectedPlanet.name.toLowerCase()}}.png" class="col-md-8" />
-  </div>
-  
 </div>

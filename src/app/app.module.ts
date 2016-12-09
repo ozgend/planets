@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { DetailComponent } from './components/detail/detail.component';
-import { PlanetDataService } from './services/planet-data.service';
+import { SpaceObjectService, TypeFilterPipe } from './services/space-object.service';
 import { OrbitComponent } from './components/orbit/orbit.component';
 
 @NgModule({
@@ -19,7 +19,8 @@ import { OrbitComponent } from './components/orbit/orbit.component';
         HeaderComponent,
         ListingComponent,
         DetailComponent,
-        OrbitComponent
+        OrbitComponent,
+        TypeFilterPipe
     ],
     imports: [
         BrowserModule,
@@ -27,7 +28,7 @@ import { OrbitComponent } from './components/orbit/orbit.component';
         HttpModule,
         NgbModule.forRoot()
     ],
-    providers: [PlanetDataService], // needs to be singleton- provide here only 
+    providers: [SpaceObjectService], // needs to be singleton- provide here only 
     bootstrap: [AppComponent]
 })
 export class AppModule { }

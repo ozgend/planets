@@ -1,30 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Planet } from '../../models/planet';
-import { PlanetDataService } from '../../services/planet-data.service';
+import { SpaceObject } from '../../models/space-object';
+import { SpaceObjectService, TypeFilterPipe } from '../../services/space-object.service';
 
 @Component({
-    selector: 'planet-listing',
+    selector: 'space-listing',
     templateUrl: './listing.component.html',
     styleUrls: ['./listing.component.css']
 })
 
 export class ListingComponent implements OnInit {
-    planets: Planet[];
-    selectedPlanet: Planet;
+    spaceObjects: SpaceObject[];
+    selectionUid: string;
 
-    constructor(private planetDataService: PlanetDataService) { }
+    constructor(private spaceObjectService: SpaceObjectService) { }
 
     ngOnInit(): void {
-        this.loadPlanets();
+        this.getSpaceObjects();
     }
 
-    loadPlanets(): void {
-        this.planetDataService.getPlanets().then(planets => this.planets = planets);
+    getSpaceObjects(): void {
+        this.spaceObjectService.getAll().then(spaceObjects => this.spaceObjects = spaceObjects);
     }
 
-    onSelect(planet: Planet): void {
-        this.selectedPlanet = planet;
-        this.planetDataService.onSelect(planet);
+
+    onSelect(spaceObject: SpaceObject): void {
+        this.selectionUid = spaceObject.uid;
+        this.spaceObjectService.onSelect(spaceObject);
     }
 
 }

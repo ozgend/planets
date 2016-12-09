@@ -1,24 +1,24 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Planet } from '../../models/planet';
-import { PlanetDataService } from '../../services/planet-data.service';
+import { SpaceObject } from '../../models/space-object';
+import { SpaceObjectService } from '../../services/space-object.service';
 
 @Component({
-  selector: 'planet-detail',
+  selector: 'space-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
 
 export class DetailComponent implements OnDestroy {
-  selectedPlanet: Planet;
+  spaceObject: SpaceObject;
   subscription: Subscription;
 
-  constructor(private planetDataService: PlanetDataService) {
-    this.subscription = this.planetDataService.selectionObservable.subscribe(planet => { this.onSelect(planet); });
+  constructor(private spaceObjectService: SpaceObjectService) {
+    this.subscription = this.spaceObjectService.selectionObservable.subscribe(spaceObject => { this.onSelect(spaceObject); });
   }
 
-  onSelect(planet: Planet) {
-    this.planetDataService.getPlanet(planet.id).then(planet => this.selectedPlanet = planet);
+  onSelect(spaceObject: SpaceObject) {
+    this.spaceObject = spaceObject;
   }
 
   ngOnDestroy() {

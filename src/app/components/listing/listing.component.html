@@ -1,6 +1,17 @@
 <h3></h3>
-<div class="list-group">
-  <a href="#/{{planet.name.toLowerCase()}}" *ngFor="let planet of planets" (click)="onSelect(planet)"  class="list-group-item list-group-item-action">
-    <span>{{planet.name}}</span>
+
+<div class="list-group" *ngIf="spaceObjects">
+
+  <a *ngFor="let spaceObject of spaceObjects | typeFilter:'star'" href="#/{{spaceObject.name}}" (click)="onSelect(spaceObject)"
+    class="list-group-item list-group-item-action">
+    <span>{{spaceObject.name}}</span>
   </a>
+  
+  <h3></h3>
+
+  <a *ngFor="let spaceObject of spaceObjects | typeFilter:'planet'" href="#/{{spaceObject.name}}" (click)="onSelect(spaceObject)"
+    class="list-group-item list-group-item-action">
+    <span>{{spaceObject.name}}</span>
+  </a>
+
 </div>

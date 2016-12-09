@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { PlanetDataService } from './planet-data.service';
+import { SpaceObjectService } from './space-object.service';
 
-describe('PlanetDataService', () => {
+describe('SpaceObjectService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PlanetDataService]
+      providers: [SpaceObjectService]
     });
   });
 
-  it('should ...', inject([PlanetDataService], (service: PlanetDataService) => {
+  it('should ...', inject([SpaceObjectService], (service: SpaceObjectService) => {
     expect(service).toBeTruthy();
   }));
 });

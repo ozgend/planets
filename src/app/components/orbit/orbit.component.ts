@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, Input, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { PlanetDataService } from '../../services/planet-data.service';
-import { Planet } from '../../models/planet';
+import { SpaceObjectService } from '../../services/space-object.service';
+import { SpaceObject } from '../../models/space-object';
 
 @Component({
-  selector: 'planet-orbit',
+  selector: 'space-orbit',
   templateUrl: './orbit.component.html',
   styleUrls: ['./orbit.component.css']
 })
@@ -12,14 +12,15 @@ export class OrbitComponent {
   @ViewChild('orbitCanvas') canvasRef: ElementRef;
   private canvas: any;
 
-  planets: Planet[];
   subscription: Subscription;
+  spaceObjects: SpaceObject[];
+  sun: SpaceObject;
 
   private _diameterRatio = 8000;
   private _distanceRatio = 3500000;
 
-  constructor(private planetDataService: PlanetDataService) {
-    this.subscription = this.planetDataService.selectionObservable.subscribe(planet => { this.onSelect(planet); });
+  constructor(private spaceObjectService: SpaceObjectService) {
+    this.subscription = this.spaceObjectService.selectionObservable.subscribe(spaceObject => { this.onSelect(spaceObject); });
   }
 
   ngAfterViewInit() {
@@ -28,24 +29,25 @@ export class OrbitComponent {
     this.canvas.style.height = '400px';
     this.canvas.width = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
-    this.loadPlanets();
+    this.getSpaceObjects();
   }
 
-  loadPlanets(): void {
-    this.planetDataService.getPlanets().then(
-      planets => {
-        this.planets = planets;
+  getSpaceObjects(): void {
+    this.spaceObjectService.getAll().then(
+      spaceObjects => {
+        this.spaceObjects = spaceObjects.filter(so => so.type != 'star');
+        this.sun = spaceObjects.find(so => so.type == 'star');
         this.draw();
       }
     );
   }
 
-  onSelect(planet: Planet) {
-    this.draw(planet);
+  onSelect(spaceObject: SpaceObject) {
+    this.draw(spaceObject);
   }
 
-  draw(selectedPlanet: Planet = null) {
-    if (!selectedPlanet) {
+  draw(selectedSpaceObject: SpaceObject = null) {
+    if (!selectedSpaceObject) {
       return;
     }
 
@@ -57,27 +59,27 @@ export class OrbitComponent {
 
     //sun
     context.beginPath();
-    context.arc(centerX, centerY, this.planetDataService.sun.diameter / (this._diameterRatio * 20), 0, 2 * Math.PI, false);
+    context.arc(centerX, centerY, this.sun.diameter / (this._diameterRatio * 20), 0, 2 * Math.PI, false);
     context.fillStyle = 'orange';
     context.fill();
 
 
-    for (let i = 0; i < this.planets.length; i++) {
+    for (let i = 0; i < this.spaceObjects.length; i++) {
 
-      var isSelected = this.planets[i].id == selectedPlanet.id;
+      var isSelected = this.spaceObjects[i].uid == selectedSpaceObject.uid;
 
-      var orbitRadius = this.planets[i].distanceToSun / this._distanceRatio; // rough!
+      var scaledOrbitRadius = this.spaceObjects[i].distance / this._distanceRatio; // rough!
 
       context.beginPath();
-      context.arc(centerX, centerY, orbitRadius, 1.8 * Math.PI, 2.2 * Math.PI, false);
+      context.arc(centerX, centerY, scaledOrbitRadius, 1.8 * Math.PI, 2.2 * Math.PI, false);
       context.lineWidth = 1;
       context.strokeStyle = isSelected ? '#3c9bbb' : '#ccc';
       context.stroke();
 
-      var planetDiameter = this.planets[i].diameter / this._diameterRatio;
+      var scaledDiameter = this.spaceObjects[i].diameter / this._diameterRatio;
 
       context.beginPath();
-      context.arc(orbitRadius, centerY, planetDiameter, 0, 2 * Math.PI, false);
+      context.arc(scaledOrbitRadius, centerY, scaledDiameter, 0, 2 * Math.PI, false);
       context.fillStyle = isSelected ? '#3c9bbb' : 'gray';
       context.fill();
 
