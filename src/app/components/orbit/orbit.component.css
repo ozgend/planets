@@ -3,4 +3,10 @@
 }
 
 canvas{
+    /*border: 1px solid #ddd;*/
+    border:none;
+}
+
+canvas:hover{
+    cursor:crosshair;
 }

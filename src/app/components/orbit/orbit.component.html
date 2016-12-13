@@ -1,6 +1,11 @@
 <div class="dpanel">
   <h3></h3>
 
+  <div class="btn-group" role="group"  *ngIf="selectedSpaceObject">
+    <button type="button" class="btn btn-default" (click)="resetZoom()">Reset Zoom</button>
+    <button type="button" class="btn btn-default" (click)="resetPan()">Reset Pan</button>
+  </div>
+
   <canvas #orbitCanvas></canvas>
 
 </div>
